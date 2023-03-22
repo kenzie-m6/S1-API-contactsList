@@ -4,7 +4,7 @@ import { User } from "../../entities";
 import { IUserReturn, IUserUpdate } from "../../interfaces/users.interfaces";
 import { returnUserSchema } from "../../schemas/users.schemas";
 
-export const updateUserService = async (userData: IUserUpdate, userId: string): Promise<IUserReturn> => {
+export const updateUserService = async (userData: any, userId: string): Promise<IUserReturn> => {
 
     const userRepository: Repository<User> = AppDataSource.getRepository(User)
 
