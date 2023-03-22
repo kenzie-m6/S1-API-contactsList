@@ -8,5 +8,5 @@ import { createLoginSchema } from '../schemas/login.schema'
 
 export const loginRoutes: Router = Router()
 
-loginRoutes.post('', ensureDataIsValidMiddleware(createLoginSchema), createLoginController)
+loginRoutes.post("", ensureDataIsValidMiddleware(createLoginSchema), createLoginController)
 
