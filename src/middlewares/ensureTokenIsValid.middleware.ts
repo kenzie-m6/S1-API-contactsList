@@ -18,7 +18,7 @@ export const ensureTokenIsValidMiddleware = (req: Request, res: Response, next: 
             throw new AppError(error.message, 401)
         }
 
-        req["user"] = {
+        req.user = {
             id: decoded.sub,
         }
 
