@@ -32,7 +32,7 @@ export const listUserController = async (req: Request, res:Response) => {
 
 export const updateUserController = async (req: Request, res: Response) => {
     const userId: string = req.user.id
-    const nUserData: IUserUpdate = req["body"]
+    const nUserData: IUserUpdate = req.body
 
     const updatedUser = await updateUserService(nUserData, userId)
 

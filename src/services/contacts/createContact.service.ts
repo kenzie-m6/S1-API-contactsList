@@ -3,7 +3,7 @@ import { AppDataSource } from "../../data-source";
 import { Contact, User } from "../../entities";
 import { AppError } from "../../errors";
 import { IContact } from "../../interfaces/contacts.interface";
-import { contactSchema } from "../../schemas/contacts.schema";
+import { contactSchema, returnContactSchema } from "../../schemas/contacts.schema";
 
 export const createContactService = async (
   userId: string,
@@ -11,6 +11,13 @@ export const createContactService = async (
 ) => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
   const contactRepository = AppDataSource.getRepository(Contact);
+
+  const contactAlreadyExist = await contactRepository
+  .findOneBy({email:contactData.email})
+
+  if(contactAlreadyExist){
+    throw new AppError("Contact already exists", 409)
+  }
 
   const user = await userRepository.findOneBy({ id: userId });
 
@@ -24,7 +31,7 @@ export const createContactService = async (
   });
   await contactRepository.save(contact);
 
-  const returnContact = contactSchema.parse(contact);
+  const returnContact = returnContactSchema.parse(contact);
 
   return returnContact;
 };
