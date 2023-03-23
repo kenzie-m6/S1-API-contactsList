@@ -3,7 +3,7 @@ import { AppDataSource } from "../../data-source";
 import { Contact, User } from "../../entities";
 import { AppError } from "../../errors";
 import { IContact } from "../../interfaces/contacts.interface";
-import { contactSchema, returnContactSchema } from "../../schemas/contacts.schema";
+import { returnContactSchema } from "../../schemas/contacts.schema";
 
 export const createContactService = async (
   userId: string,
