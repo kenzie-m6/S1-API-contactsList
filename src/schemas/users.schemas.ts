@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { hashSync } from "bcryptjs";
+import { manyContactsSchema } from "./contacts.schema";
 
 export const userSchema = z.object({
     email: z.string().email("invalid e-mail").min(6).max(50),
@@ -18,5 +19,6 @@ export const userUpdateSchema = userSchema.partial()
 export const returnUserSchema = userSchema.extend({
     id: z.string().uuid(),
     createdAt: z.date(),
-    deletedAt: z.date().nullable()
+    deletedAt: z.date().nullable(),
+    contacts: manyContactsSchema
 }).omit({password: true})
