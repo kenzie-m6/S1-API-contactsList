@@ -11,7 +11,10 @@ export const contactSchema = z.object({
 
 export const contactUpdateSchema = contactSchema.partial()
 
-export const manyContactsSchema = contactSchema.array()
+export const manyContactsSchema = contactSchema.extend({
+    id: z.string().uuid(),
+    createdAt: z.date()
+}).array()
 
 export const returnContactSchema = contactSchema.extend({
     id: z.string().uuid(),

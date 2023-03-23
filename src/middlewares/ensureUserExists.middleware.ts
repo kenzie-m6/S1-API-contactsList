@@ -10,7 +10,7 @@ export const ensureUserExistsMiddleware = async (req: Request, res: Response, ne
 
 const findUser = await userRepository.findOne({
         where: {
-            id: req.params.id
+            id: req.user.id
         }
     })
 
