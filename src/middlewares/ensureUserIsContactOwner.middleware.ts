@@ -11,16 +11,16 @@ export const ensureUserIsOwnerMiddleware = async (
 ): Promise<void> => {
   const contactRepository: Repository<Contact> =
     AppDataSource.getRepository(Contact);
-  const userId = req.user.id
-  const contactId = req.params.id
+  const userId = req.user.id;
+  const contactId = req.params.id;
 
   const findContact = await contactRepository
-  .createQueryBuilder()
-  .from(Contact, "contact")
-  .leftJoin("contact.user", "user")
-  .select(["contact", "user.id"])
-  .where("contact.id = :id", {id: contactId})
-  .getOne()
+    .createQueryBuilder()
+    .from(Contact, "contact")
+    .leftJoin("contact.user", "user")
+    .select(["contact", "user.id"])
+    .where("contact.id = :id", { id: contactId })
+    .getOne();
 
   if (findContact?.user.id !== userId) {
     throw new AppError("You don't have permission to access this contact", 403);

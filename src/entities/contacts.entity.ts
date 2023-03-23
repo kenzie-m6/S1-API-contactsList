@@ -30,9 +30,9 @@ export class Contact {
   @Column({ type: "varchar", length: 15, nullable: true })
   secondaryPhone?: string | undefined | null;
 
-  @CreateDateColumn({type: "timestamp"})
+  @CreateDateColumn({ type: "timestamp" })
   createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.contacts)
-  user: User
+  user: User;
 }

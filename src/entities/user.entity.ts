@@ -25,7 +25,7 @@ export class User {
   @Column({ length: 120 })
   password: string;
 
-  @Column({ type: "varchar", length: 200, nullable: true})
+  @Column({ type: "varchar", length: 200, nullable: true })
   profileImg?: string | undefined | null;
 
   @Column({ length: 50 })
@@ -37,7 +37,7 @@ export class User {
   @Column({ type: "varchar", length: 15, nullable: true })
   secondaryPhone?: string | undefined | null;
 
-  @CreateDateColumn({type: "timestamp"})
+  @CreateDateColumn({ type: "timestamp" })
   createdAt: Date;
 
   @DeleteDateColumn()
@@ -51,7 +51,7 @@ export class User {
       this.password = hashSync(this.password, 10);
     }
   }
-  
+
   @OneToMany(() => Contact, (contact) => contact.user)
-  contacts:Contact[]
+  contacts: Contact[];
 }
