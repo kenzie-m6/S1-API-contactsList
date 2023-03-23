@@ -3,8 +3,10 @@ import { createContactController, deleteContactController, listContactController
 import { ensureContactExistsMiddleware } from "../middlewares/ensureContactExist.middleware";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
 import { ensureTokenIsValidMiddleware } from "../middlewares/ensureTokenIsValid.middleware";
-import { ensureUserIsOwnerMiddleware } from "../middlewares/ensureUserIsContactOwner.service";
+import { ensureUserIsOwnerMiddleware } from "../middlewares/ensureUserIsContactOwner.middleware";
+import { ensureValidUuidMiddleware } from "../middlewares/ensureValidUuid.middleware";
 import { contactSchema } from "../schemas/contacts.schema";
+import { uuidSchema } from "../schemas/uuid.schema";
 
  export const contactsRoutes: Router = Router()
 
@@ -12,4 +14,4 @@ import { contactSchema } from "../schemas/contacts.schema";
  contactsRoutes.get("", ensureTokenIsValidMiddleware, listContactsController)
  contactsRoutes.get("/:id", ensureTokenIsValidMiddleware, ensureContactExistsMiddleware, ensureUserIsOwnerMiddleware, listContactController)
  contactsRoutes.patch("/:id", ensureTokenIsValidMiddleware, ensureContactExistsMiddleware, ensureUserIsOwnerMiddleware, updateContactController)
- contactsRoutes.delete("/:id", ensureTokenIsValidMiddleware, ensureContactExistsMiddleware, ensureUserIsOwnerMiddleware, deleteContactController)
+ contactsRoutes.delete("/:id", ensureValidUuidMiddleware(uuidSchema), ensureTokenIsValidMiddleware, ensureContactExistsMiddleware, ensureUserIsOwnerMiddleware, deleteContactController)
