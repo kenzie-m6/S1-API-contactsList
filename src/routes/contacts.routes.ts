@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createContactController, listContactController, listContactsController, updateContactController } from "../controllers/contacts.controllers";
+import { createContactController, deleteContactController, listContactController, listContactsController, updateContactController } from "../controllers/contacts.controllers";
 import { ensureContactExistsMiddleware } from "../middlewares/ensureContactExist.middleware";
 import { ensureDataIsValidMiddleware } from "../middlewares/ensureDataIsValid.middleware";
 import { ensureTokenIsValidMiddleware } from "../middlewares/ensureTokenIsValid.middleware";
@@ -12,3 +12,4 @@ import { contactSchema } from "../schemas/contacts.schema";
  contactsRoutes.get("", ensureTokenIsValidMiddleware, listContactsController)
  contactsRoutes.get("/:id", ensureTokenIsValidMiddleware, ensureContactExistsMiddleware, ensureUserIsOwnerMiddleware, listContactController)
  contactsRoutes.patch("/:id", ensureTokenIsValidMiddleware, ensureContactExistsMiddleware, ensureUserIsOwnerMiddleware, updateContactController)
+ contactsRoutes.delete("/:id", ensureTokenIsValidMiddleware, ensureContactExistsMiddleware, ensureUserIsOwnerMiddleware, deleteContactController)

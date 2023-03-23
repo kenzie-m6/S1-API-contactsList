@@ -8,6 +8,6 @@ import { userSchema, userUpdateSchema } from "../schemas/users.schemas";
 export const userRoutes: Router = Router()
 
 userRoutes.post("", ensureDataIsValidMiddleware(userSchema), createUserController)
-userRoutes.get("", ensureTokenIsValidMiddleware, listUserController)
+userRoutes.get("/user", ensureTokenIsValidMiddleware, listUserController)
 userRoutes.delete("", ensureTokenIsValidMiddleware, ensureUserExistsMiddleware, deleteUserController)
 userRoutes.patch("", ensureTokenIsValidMiddleware, ensureDataIsValidMiddleware(userUpdateSchema), ensureUserExistsMiddleware, updateUserController)
