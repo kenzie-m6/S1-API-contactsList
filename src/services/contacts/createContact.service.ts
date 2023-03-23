@@ -12,11 +12,12 @@ export const createContactService = async (
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
   const contactRepository = AppDataSource.getRepository(Contact);
 
-  const contactAlreadyExist = await contactRepository
-  .findOneBy({email:contactData.email})
+  const contactAlreadyExist = await contactRepository.findOneBy({
+    email: contactData.email,
+  });
 
-  if(contactAlreadyExist){
-    throw new AppError("Contact already exists", 409)
+  if (contactAlreadyExist) {
+    throw new AppError("Contact already exists", 409);
   }
 
   const user = await userRepository.findOneBy({ id: userId });

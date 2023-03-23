@@ -5,7 +5,9 @@ import { AppError } from "../../errors";
 import { IContact } from "../../interfaces/contacts.interface";
 import { returnContactSchema } from "../../schemas/contacts.schema";
 
-export const listContactService = async (contactId: string): Promise<IContact> => {
+export const listContactService = async (
+  contactId: string
+): Promise<IContact> => {
   const contactRepository: Repository<Contact> =
     AppDataSource.getRepository(Contact);
 
