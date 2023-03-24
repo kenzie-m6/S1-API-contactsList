@@ -8,13 +8,10 @@ export const listUserService = async (userId: string): Promise<IUserReturn> => {
   const userRepository: Repository<User> = AppDataSource.getRepository(User);
 
   const user = await userRepository
-    .createQueryBuilder()
-    .from(User, "user")
-    .select("user")
-    .leftJoinAndSelect("user.contacts", "userContacts")
-    .where({ id: userId })
-    .getOne();
-
+  .createQueryBuilder("user")
+  .leftJoinAndSelect("user.contacts", "contacts")
+  .where({ id: userId })
+  .getOne();
   const foundUser = returnUserSchema.parse(user);
 
   return foundUser;

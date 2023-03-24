@@ -37,7 +37,7 @@ export class User {
   @Column({ type: "varchar", length: 15, nullable: true })
   secondaryPhone?: string | undefined | null;
 
-  @CreateDateColumn({ type: "timestamp" })
+  @CreateDateColumn()
   createdAt: Date;
 
   @DeleteDateColumn()

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const contactSchema = z.object({
-  email: z.string().email().min(6).max(50),
+  email: z.string().email("Invalid email format").min(6).max(50),
   secondaryEmail: z.string().email().min(6).max(50).nullish(),
   profileImg: z.string().max(200).nullish(),
   fullName: z.string().min(3).max(50),
