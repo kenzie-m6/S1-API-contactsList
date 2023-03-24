@@ -11,7 +11,7 @@ export const mockedToUpdateLoginRequest: ILogin = {
     password: "1234"
 }
 
-export const mockedInvalidCredentialsLoginRequest: ILogin = {
+export const mockedUnregisteredCredentialsLoginRequest: ILogin = {
     email: "invalid@email.com",
     password: "12345"
 }
