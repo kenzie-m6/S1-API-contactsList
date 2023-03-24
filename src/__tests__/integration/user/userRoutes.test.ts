@@ -78,6 +78,38 @@ describe("/users", () => {
     expect(response.body.password[0]).toEqual("Required")
   })
 
+  test("POST /users -> Should NOT be able to create an account without a valid password", async () =>{
+    const {email, fullName, phone} = mockedCreatedUser
+    const userWithInvalidPassword = {
+        email:email,
+        fullName: fullName,
+        phone: phone,
+        password:"123"
+
+    }
+    const response = await request(app).post("/users").send(userWithInvalidPassword);
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toHaveProperty("password")
+    expect(response.body.password[0]).toEqual("Password need to be at least 4 characters")
+  })
+
+  test("POST /users -> Should NOT be able to create an account without a valid e-mail field", async () =>{
+    const { fullName, phone, password} = mockedCreatedUser
+    const userWithInvalidEmail = {
+        email:"invalid_mail.com",
+        fullName: fullName,
+        phone: phone,
+        password: password
+
+    }
+    const response = await request(app).post("/users").send(userWithInvalidEmail);
+
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toHaveProperty("email")
+    expect(response.body.email[0]).toEqual("Invalid e-mail format")
+  })
+
   test("POST /users -> Should be able to create an account", async () => {
     const response = await request(app).post("/users").send(mockedCreatedUser);
 
@@ -191,6 +223,14 @@ describe("/users", () => {
     const response = await request(app).delete("/users").set("Authorization", await token())
 
     expect(response.status).toBe(204);
+  })
+
+  test("POST /login -> Should NOT be able to login with a deleted account", async ()=> {
+    const response = await request(app).post("/login").send(mockedLoginRequest)
+
+    expect(response.body).toHaveProperty("message")
+    expect(response.body.message).toEqual("Wrong email or password")
+    expect(response.status).toBe(401);
   })
 
 });
