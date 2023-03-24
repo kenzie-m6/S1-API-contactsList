@@ -1,5 +1,5 @@
 import { ILogin } from "../../../interfaces/login.interfaces";
-import { mockedCreatedUser } from "./user.mocks";
+import { mockedCreatedToUpdateUser, mockedCreatedUser } from "./user.mocks";
 
 export const mockedLoginRequest: ILogin = {
     email: mockedCreatedUser.email,
@@ -7,8 +7,8 @@ export const mockedLoginRequest: ILogin = {
 }
 
 export const mockedToUpdateLoginRequest: ILogin = {
-    email: "user_to_update@email.com",
-    password: "1234"
+    email: mockedCreatedToUpdateUser.email,
+    password: mockedCreatedToUpdateUser.password
 }
 
 export const mockedUnregisteredCredentialsLoginRequest: ILogin = {

@@ -25,6 +25,6 @@ export const returnUserSchema = userSchema
     id: z.string().uuid(),
     createdAt: z.date(),
     deletedAt: z.date().nullable(),
-    contacts: manyContactsSchema,
+    contacts: manyContactsSchema.optional(),
   })
   .omit({ password: true });

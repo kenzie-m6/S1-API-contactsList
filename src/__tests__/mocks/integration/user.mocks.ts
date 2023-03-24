@@ -6,3 +6,9 @@ export const mockedCreatedUser: IUser ={
     fullName: "User Test",
     phone: "995568554"
 }
+export const mockedCreatedToUpdateUser: IUser ={
+    email: "user_to_update@email.com",
+    password: "1234",
+    fullName: "User Test",
+    phone: "995568554"
+}
