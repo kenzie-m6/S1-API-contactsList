@@ -21,8 +21,8 @@ yarn test
 yarn dev
 ```
 
-### Imsomnia Workspace
+### Insomnia Workspace
 
 
-### Imsomnia Documentation
+### Insomnia Documentation
 
