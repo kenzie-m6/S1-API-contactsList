@@ -28,7 +28,6 @@ contactsRoutes.get(
   ensureValidUuidMiddleware(uuidSchema),
   ensureTokenIsValidMiddleware,
   ensureContactExistsMiddleware,
-  ensureUserIsOwnerMiddleware,
   listContactController
 );
 contactsRoutes.patch(
@@ -36,7 +35,6 @@ contactsRoutes.patch(
   ensureValidUuidMiddleware(uuidSchema),
   ensureTokenIsValidMiddleware,
   ensureContactExistsMiddleware,
-  ensureUserIsOwnerMiddleware,
   updateContactController
 );
 contactsRoutes.delete(
@@ -44,6 +42,5 @@ contactsRoutes.delete(
   ensureValidUuidMiddleware(uuidSchema),
   ensureTokenIsValidMiddleware,
   ensureContactExistsMiddleware,
-  ensureUserIsOwnerMiddleware,
   deleteContactController
 );

@@ -177,41 +177,40 @@ describe("/contacts", () => {
     expect(response.status).toBe(401);
   });
 
-    // test("GET /contacts/:id -> Should be able to list a contact", async () => {
-    //   const contactId = await request(app)
-    //   .get("/contacts")
-    //   .set("Authorization", await token());
+    test("GET /contacts/:id -> Should be able to list a contact", async () => {
+      const contactId = await request(app)
+      .get("/contacts")
+      .set("Authorization", await token());
+      
+      const response = await request(app)
+      .get(`/contacts/${contactId.body[0].id}`)
+      .set("Authorization", await token());
 
-    //   const response = await request(app)
-    //   .get(`/contacts/${contactId.body[0].id}`)
-    //   .set("Authorization", await token());
+      expect(response.body).toHaveProperty("id");
+      expect(response.body).toHaveProperty("fullName");
+      expect(response.body).toHaveProperty("email");
+      expect(response.body).not.toHaveProperty("length");
+      expect(response.status).toBe(200);
 
-    //   expect(response.body).toHaveProperty("id");
-    //   expect(response.body).toHaveProperty("fullName");
-    //   expect(response.body).toHaveProperty("email");
-    //   expect(response.body).toHaveProperty("message");
-    //   expect(response.body).not.toHaveProperty("length");
-    //   expect(response.status).toBe(200);
+    })
 
-    // })
+  test("PATCH /contacts/:id -> Should be able to update a contact", async () => {
+    const contactId = await request(app)
+      .post("/contacts")
+      .send(mockedCreatedToUpdateContact)
+      .set("Authorization", await token());
 
-//   test("PATCH /contacts/:id -> Should be able to update a contact", async () => {
-//     const contactId = await request(app)
-//       .post("/contacts")
-//       .send(mockedCreatedToUpdateContact)
-//       .set("Authorization", await token());
+    const newContactData = {
+      email: "updated_email@email.com",
+      profileImg: "http://imagerandom.com",
+      phone: "995687523",
+    };
 
-//     const newContactData = {
-//       email: "updated_email@email.com",
-//       profileImg: "http://imagerandom.com",
-//       phone: "995687523",
-//     };
+    const response = await request(app)
+      .patch(`/contacts/${contactId.body.id}`)
+      .send(newContactData)
+      .set("Authorization", await token());
 
-//     const response = await request(app)
-//       .patch(`/contacts/${contactId.body.id}`)
-//       .send(newContactData)
-//       .set("Authorization", await token());
-
-//     expect(response.status).toBe(200);
-//   });
+    expect(response.status).toBe(200);
+  });
 });

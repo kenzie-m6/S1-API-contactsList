@@ -25,7 +25,7 @@ export class User {
   @Column({ length: 120 })
   password: string;
 
-  @Column({ type: "varchar", length: 200, nullable: true })
+  @Column({ type: "varchar", length: 500, nullable: true })
   profileImg?: string | undefined | null;
 
   @Column({ length: 50 })
