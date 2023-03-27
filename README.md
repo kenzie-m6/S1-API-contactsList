@@ -23,7 +23,7 @@ yarn dev
 
 ### Insomnia Workspace
 
-<a href="https://insomnia.rest/run?label=Contacts%20List%20-%20API&uri=https%3A%2F%2Fs1-api-contacts-list.vercel.app%2Finsomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a><br>
+<a href="insomnia://app/import?uri=https://s1-api-contacts-list.vercel.app/insomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a><br>
 
 ### Insomnia Documentation
 https://s1-api-contacts-list.vercel.app/
