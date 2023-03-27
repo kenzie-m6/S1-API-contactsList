@@ -12,7 +12,7 @@ export const userSchema = z.object({
     .transform((pass) => {
       return hashSync(pass, 10);
     }),
-  profileImg: z.string().max(200).nullish(),
+  profileImg: z.string().max(500).nullish(),
   fullName: z.string().min(3).max(50),
   phone: z.string().min(8).max(20),
   phoneSecondary: z.string().min(8).max(20).nullish(),

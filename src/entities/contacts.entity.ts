@@ -18,7 +18,7 @@ export class Contact {
   @Column({ type: "varchar", length: 50, unique: true, nullable: true })
   secondaryEmail?: string | undefined | null;
 
-  @Column({ type: "varchar", length: 200, nullable: true })
+  @Column({ type: "varchar", length: 500, nullable: true })
   profileImg?: string | undefined | null;
 
   @Column({ length: 50 })
